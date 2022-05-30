@@ -85,5 +85,4 @@ int main()
  
     cout << "Optimal Parenthesization is : ";
     printParenthesis(1, tn - 1, tn, (int*)s, name);
-    cout << "nOptimal Cost is : " << m[1][n - 1];
 }
