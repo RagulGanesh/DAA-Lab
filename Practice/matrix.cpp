@@ -1,5 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+void printParenthesis(int i, int j, int n, int* bracket,
+                      char& name)
+{
+    // If only one matrix left in current segment
+    if (i == j) {
+        cout << name++;
+        return;
+    }
+ 
+    cout << "(";
+ 
+    // Recursively put brackets around subexpression
+    // from i to bracket[i][j].
+    // Note that "*((bracket+i*n)+j)" is similar to
+    // bracket[i][j]
+    printParenthesis(i, *((bracket + i * n) + j), n,
+                     bracket, name);
+ 
+    // Recursively put brackets around subexpression
+    // from bracket[i][j] + 1 to j.
+    printParenthesis(*((bracket + i * n) + j) + 1, j, n,
+                     bracket, name);
+    cout << ")";
+}
 int main()
 {
     cout << "Enter number of matrices : ";
@@ -52,5 +77,13 @@ int main()
         cout << "\n";
     }
 
+    
+
     cout<<m[1][n];
+
+    char name = 'A';
+ 
+    cout << "Optimal Parenthesization is : ";
+    printParenthesis(1, tn - 1, tn, (int*)s, name);
+    cout << "nOptimal Cost is : " << m[1][n - 1];
 }
